@@ -1,0 +1,122 @@
+/* First, we will style the main wrapper and center it on the page: */
+.rw-wrapper {
+	width: 80%;
+	position: relative;
+	margin: 110px auto 0 auto;
+	font-family: 'Bree Serif';
+	padding: 10px;
+}
+
+/* We’ll add some text shadow to all the elements in the heading: */
+.rw-sentence {
+	margin: 0;
+	text-align: left;
+	text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+/* And add some specific text styling to the spans: */
+.rw-sentence span {
+	color: #444;
+	white-space: nowrap;
+	font-size: 200%;
+	font-weight: normal;
+}
+
+/* The divisions will be displayed as inline elements, that will allow us to “insert” them into the sentence without breaking the flow: */
+.rw-words {
+	display: inline;
+	text-indent: 10px;
+}
+
+/* Each span inside of a rw-words div will be positioned absolutely and we’ll hide any overflow: */
+.rw-words span {
+	position: absolute;
+	opacity: 0;
+	overflow: hidden;
+	width: 100%;
+	color: #6b969d;
+}
+
+/* Now, we’ll run two animations. As mentioned previously, we’ll run the same animation for all the spans in one div, just with different delays: */
+.rw-words-1 span {
+	animation: rotateWordsFirst 18s linear infinite 0s;
+}
+
+.rw-words-2 span {
+	animation: rotateWordsSecond 18s linear infinite 0s;
+}
+
+.rw-words span:nth-child(2) {
+	animation-delay: 3s;
+	color: #6b889d;
+}
+
+.rw-words span:nth-child(3) {
+	animation-delay: 6s;
+	color: #6b739d;
+}
+
+.rw-words span:nth-child(4) {
+	animation-delay: 9s;
+	color: #7a6b9d;
+}
+
+.rw-words span:nth-child(5) {
+	animation-delay: 12s;
+	color: #8d6b9d;
+}
+
+.rw-words span:nth-child(6) {
+	animation-delay: 15s;
+	color: #9b6b9d;
+}
+
+/* Our animations will run one cycle, meaning that each span will be shown once for three seconds, hence the delay value. The whole animation will run 6 (number of images) * 3 (appearance time) = 18 seconds. */
+/* We will need to set the right percentage for the opacity value (or whatever makes the span appear). Dividing 6 by 18 gives us 0.333… which would be 33% for our keyframe step. Everything that we want to happen to the span needs to happen before that. So, after tweaking and seeing what fits best, we come up with the following animation for the first words: */
+@keyframes rotateWordsFirst {
+	0% {
+		opacity: 1;
+		animation-timing-function: ease-in;
+		height: 0px;
+	}
+	8% {
+		opacity: 1;
+		height: 60px;
+	}
+	19% {
+		opacity: 1;
+		height: 60px;
+	}
+	25% {
+		opacity: 0;
+		height: 60px;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+/* We’ll fade in the span and we’ll also animate its height. */
+/* The animation for the words in the second div will fade in and animate their width. We added a bit to the keyframe step percentages here, because we want these words to appear just a tiny bit later than the ones of the first word: */
+@keyframes rotateWordsSecond {
+	0% {
+		opacity: 1;
+		animation-timing-function: ease-in;
+		width: 0px;
+	}
+	10% {
+		opacity: 0.3;
+		width: 0px;
+	}
+	20% {
+		opacity: 1;
+		width: 100%;
+	}
+	27% {
+		opacity: 0;
+		width: 100%;
+	}
+	100% {
+		opacity: 0;
+	}
+}
